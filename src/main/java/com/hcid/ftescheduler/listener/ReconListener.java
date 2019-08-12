@@ -10,6 +10,7 @@ public class ReconListener extends JobExecutionListenerSupport {
     @Override
     public void afterJob(JobExecution jobExecution) {
         if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
+            //TODO add new logic to check to RTD table and hit their api to notify
             System.out.println("BATCH JOB COMPLETED SUCCESSFULLY");
         }
     }

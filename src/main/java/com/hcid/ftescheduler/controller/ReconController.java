@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 public class ReconController {
 
@@ -29,8 +31,10 @@ public class ReconController {
     public ResponseEntity<String> manualScheduler() {
         //TODO execute job
         try {
-            JobParameters jobParameters = new JobParametersBuilder().addLong("time", System.currentTimeMillis())
-                    .toJobParameters();
+            JobParametersBuilder builder = new JobParametersBuilder();
+            builder.addLong("time", System.currentTimeMillis());
+            builder.addString("batchId", UUID.randomUUID().toString());
+            JobParameters jobParameters = builder.toJobParameters();
             jobLauncher.run(processRecon, jobParameters);
             return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
         } catch (JobExecutionAlreadyRunningException e) {

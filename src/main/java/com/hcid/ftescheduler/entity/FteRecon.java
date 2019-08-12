@@ -1,6 +1,7 @@
 package com.hcid.ftescheduler.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
@@ -8,6 +9,7 @@ import java.math.BigDecimal;
 @Table(name = "FTE_RECON")
 public class FteRecon {
     private String sumId;
+    @Id
     private String id;
     private String dtimeTransaction;
     private String stan;
